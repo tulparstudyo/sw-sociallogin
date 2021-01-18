@@ -1,0 +1,3 @@
+/*
+ * Custom sw-sociallogin JS
+ */

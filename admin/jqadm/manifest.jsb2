@@ -1,0 +1,22 @@
+{
+	"projectName": "sw-sociallogin",
+	"licenseText": "proprietary",
+	"pkgs": [{
+		"name": "sw-sociallogin CSS",
+		"file": "sw-sociallogin.css",
+		"isDebug": true,
+		"fileIncludes": [{
+			"text": "custom.css",
+			"path": "themes/"
+		}]
+	}, {
+		"name": "sw-sociallogin JS",
+		"file": "sw-sociallogin.js",
+		"isDebug": true,
+		"fileIncludes": [{
+			"text": "custom.js",
+			"path": "themes/"
+		}]
+	}],
+	"resources" : []
+}
