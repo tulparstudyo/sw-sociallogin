@@ -1,6 +1,7 @@
 # sw-sociallogin
 sw-sociallogin
 ## Settings
+### config/services.php
 ```
     'google' => [
         'client_id' => '***',
