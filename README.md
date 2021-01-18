@@ -13,7 +13,7 @@ sw-sociallogin
         'client_secret' => '***',
         'redirect' =>  trim(Config('app.url'),'/').'/auth/vk/callback',
     ],
-	'facebook' => [
+    'facebook' => [
         'client_id' => '***',
         'client_secret' => '***',
         'redirect' =>  trim(Config('app.url'),'/').'/auth/fb/callback',
