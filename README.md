@@ -26,8 +26,8 @@ Route::get('auth/google', 'GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
 Route::get('auth/fb', 'FacebookController@index')->name('fb.auth');
 Route::get('auth/fb/callback', 'FacebookController@callback');
-Route::get('auth/vk','SocialController@index')->name('vk.auth');
-Route::get('auth/vk/callback','SocialController@callback');
+Route::get('auth/vk','VkController@index')->name('vk.auth');
+Route::get('auth/vk/callback','VkController@callback');
 ```
 ### app/Providers/EventServiceProvider.php
 ```
