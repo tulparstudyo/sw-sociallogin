@@ -19,16 +19,28 @@ sw-sociallogin
         'client_secret' => '***',
         'redirect' =>  trim(Config('app.url'),'/').'/auth/fb/callback',
     ],
-
 ```
 ### routes/web.php
 ```
-    Route::get('auth/google', 'GoogleController@redirectToGoogle');
-    Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
-
-    Route::get('auth/fb', 'FacebookController@index')->name('fb.auth');
-    Route::get('auth/fb/callback', 'FacebookController@callback');
-
-    Route::get('/auth/vk','SocialController@index')->name('vk.auth');
-    Route::get('auth/vk/callback','SocialController@callback');
+Route::get('auth/google', 'GoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
+Route::get('auth/fb', 'FacebookController@index')->name('fb.auth');
+Route::get('auth/fb/callback', 'FacebookController@callback');
+Route::get('auth/vk','SocialController@index')->name('vk.auth');
+Route::get('auth/vk/callback','SocialController@callback');
+```
+### app/Providers/EventServiceProvider.php
+```
+protected $listen = [
+    \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+        // ... other providers
+        'SocialiteProviders\\VKontakte\\VKontakteExtendSocialite@handle',
+    ],
+];
+```
+## Using
+```
+<?php App\Http\Controllers\SocialLoginBase::button('google')?>
+<?php App\Http\Controllers\SocialLoginBase::button('facebook')?>
+<?php App\Http\Controllers\SocialLoginBase::button('vkontakte')?>
 ```
