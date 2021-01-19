@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-
+use Laravel\Socialite\Facades\Socialite;
+use Auth;
 class VkController extends SocialLoginBase
 {
     /**
@@ -10,7 +11,7 @@ class VkController extends SocialLoginBase
      */
     public function index()
     {
-        return \Socialite::driver('vkontakte')->redirect();
+        return Socialite::driver('vkontakte')->redirect();
     }
 	
     /**
@@ -37,8 +38,8 @@ class VkController extends SocialLoginBase
     {
         try {
            
-            $user = \Socialite::driver('vkontakte')->user();
-            $finduser = User::where('email', $user->getEmail())->first();
+            $user = Socialite::driver('vkontakte')->user();
+            $finduser = \App\User::where('email', $user->getEmail())->first();
             if($finduser){
                 Auth::login($finduser);
                 return redirect()->intended('/');
@@ -49,7 +50,7 @@ class VkController extends SocialLoginBase
 			
 			else{
 							
-				$newUser = User::create([
+				$newUser = \App\User::create([
                     'name' => $user->name,
                     'email' => $user->email, 
 					'vk_id' => $user->id,
