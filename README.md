@@ -21,3 +21,14 @@ sw-sociallogin
     ],
 
 ```
+### routes/web.php
+```
+    Route::get('auth/google', 'GoogleController@redirectToGoogle');
+    Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
+
+    Route::get('auth/fb', 'FacebookController@index')->name('fb.auth');
+    Route::get('auth/fb/callback', 'FacebookController@callback');
+
+    Route::get('/auth/vk','SocialController@index')->name('vk.auth');
+    Route::get('auth/vk/callback','SocialController@callback');
+```
