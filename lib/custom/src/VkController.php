@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-class SocialController extends SocialLoginBase
+class VkController extends SocialLoginBase
 {
     /**
      * Create a new controller instance.

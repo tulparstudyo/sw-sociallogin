@@ -1,12 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Auth;
 use Exception;
-use App\User;
-use Illuminate\Http\Request;
-use Laravel\Socialite;
 class SocialLoginBase extends Controller
 {
     /**

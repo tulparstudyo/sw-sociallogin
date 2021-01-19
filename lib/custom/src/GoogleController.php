@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-
+use Laravel\Socialite\Facades\Socialite;
+use Auth;
 class GoogleController extends SocialLoginBase
 {
     public static function button($platform='google', $echo=true){
@@ -9,13 +10,13 @@ class GoogleController extends SocialLoginBase
 
     public function redirectToGoogle()
     {
-        return \Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->redirect();
     }
     public function handleGoogleCallback()
     {
         try {
-            $user = \Socialite::driver('google')->user();
-            $finduser = User::where('email', $user->getEmail())->first();
+            $user = Socialite::driver('google')->stateless()->user();
+            $finduser = \App\User::where('email', $user->getEmail())->first();
             if($finduser){
                 Auth::login($finduser);
                 return redirect()->intended('/');
@@ -29,7 +30,7 @@ class GoogleController extends SocialLoginBase
                     }
                     return $randomString;
                 }
-                $newUser = User::create([
+                $newUser = \App\User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,

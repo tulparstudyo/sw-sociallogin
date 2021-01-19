@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers;
+use Laravel\Socialite\Facades\Socialite;
+use Auth;
 
 class FacebookController extends SocialLoginBase
 {
     public function index()
     {
-        return \Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->redirect();
     }
     public static function button($platform='facebook', $echo=true){
         return parent::facebookButton();
@@ -23,8 +25,8 @@ class FacebookController extends SocialLoginBase
     public function callback()
     {
         try {
-            $user = \Socialite::driver('facebook')->user();
-            $finduser = User::where('email', $user->getEmail())->first();
+            $user = Socialite::driver('facebook')->user();
+            $finduser = \App\User::where('email', $user->getEmail())->first();
             if($finduser){
                 Auth::login($finduser);
                 return redirect()->intended('/');
@@ -34,7 +36,7 @@ class FacebookController extends SocialLoginBase
 				//return view('auth.social')->with(["name"=> "Facebook"]);	
 			}
 			else{
-                $newUser = User::create([
+                $newUser = \App\User::create([
                     'name' => $user->name,
                     'email' => $user->email,
 					'fb_id' => $user->id,
